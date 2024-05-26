@@ -2,25 +2,25 @@ package org.objects.Delay;
 
 import org.objects.BaseDelay;
 
-public class LineFailureDelay implements BaseDelay {
+public class RandomSituationDelay implements BaseDelay {
 
     private float minProbability, maxProbability;
-    private int SPT;
+    private boolean stopsTrain;
     public String nameID;
 
     // default constructor
-    public LineFailureDelay() {
+    public RandomSituationDelay() {
         minProbability  = 0.0F;
         maxProbability  = 0.0F;
-        SPT             = 0;
+        stopsTrain      = false;
         nameID          = "none";
     }
 
     // constructor
-    public LineFailureDelay(float minProbability, float maxProbability, int SPT, String nameID) {
+    public RandomSituationDelay(float minProbability, float maxProbability, boolean stopsTrain, String nameID) {
         this.minProbability = minProbability;
         this.maxProbability = maxProbability;
-        this.SPT            = SPT;
+        this.stopsTrain     = stopsTrain;
         this.nameID         = nameID;
     }
 
@@ -33,7 +33,6 @@ public class LineFailureDelay implements BaseDelay {
     public void lookForOtherTrain(int codeA, int codeB) {
 
     }
-
     @Override
     public void getID() {
 
@@ -42,5 +41,4 @@ public class LineFailureDelay implements BaseDelay {
     public void getInformation() {
 
     }
-
 }
