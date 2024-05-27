@@ -6,21 +6,24 @@ public class LineFailureDelay implements BaseDelay {
 
     private float minProbability, maxProbability;
     private int SPT;
-    public String nameID;
+    private int _ID;
+    private String nameID;
 
     // default constructor
     public LineFailureDelay() {
         minProbability  = 0.0F;
         maxProbability  = 0.0F;
         SPT             = 0;
+        _ID             = 0;
         nameID          = "none";
     }
 
     // constructor
-    public LineFailureDelay(float minProbability, float maxProbability, int SPT, String nameID) {
+    public LineFailureDelay(float minProbability, float maxProbability, int SPT, int _ID, String nameID) {
         this.minProbability = minProbability;
         this.maxProbability = maxProbability;
         this.SPT            = SPT;
+        this._ID            = _ID;
         this.nameID         = nameID;
     }
 

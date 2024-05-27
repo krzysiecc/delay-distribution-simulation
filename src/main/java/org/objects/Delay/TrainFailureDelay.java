@@ -7,7 +7,8 @@ public class TrainFailureDelay implements BaseDelay {
     private float minProbability, maxProbability;
     private int SPT;
     private boolean stopsTrain;
-    public String nameID;
+    private int _ID;
+    private String nameID;
 
     // default constructor
     public TrainFailureDelay() {
@@ -15,15 +16,17 @@ public class TrainFailureDelay implements BaseDelay {
         maxProbability  = 0.0F;
         SPT             = 0;
         stopsTrain      = false;
-        nameID            = "none";
+        _ID             = 0;
+        nameID          = "none";
     }
 
     // constructor
-    public TrainFailureDelay(float minProbability, float maxProbability, int SPT, boolean stopsTrain, String nameID) {
+    public TrainFailureDelay(float minProbability, float maxProbability, int SPT, boolean stopsTrain, int _ID, String nameID) {
         this.minProbability = minProbability;
         this.maxProbability = maxProbability;
         this.SPT            = SPT;
         this.stopsTrain     = stopsTrain;
+        this._ID            = _ID;
         this.nameID         = nameID;
     }
 

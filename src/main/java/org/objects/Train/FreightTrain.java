@@ -1,6 +1,6 @@
 package org.objects.Train;
 
-public class FreightTrain extends TrainLogic {
+public class FreightTrain extends Train {
     public FreightTrain(int _NID, int VMax) {
         super(_NID, VMax);
 

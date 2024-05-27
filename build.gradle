@@ -3,6 +3,8 @@ plugins {
     id 'org.openjfx.javafxplugin' version '0.1.0'
 }
 
+mainClassName = 'org.window.Simulation'
+
 repositories {
     mavenCentral()
 }
@@ -12,7 +14,11 @@ javafx {
     modules = [ 'javafx.controls' ]
 }
 
-mainClassName = 'org.window.Simulation'
+jar {
+    manifest {
+        attributes 'Main-Class': mainClassName
+    }
+}
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'

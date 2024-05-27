@@ -4,7 +4,7 @@ import org.objects.BaseTrain;
 
 import java.util.ArrayList;
 
-public class TrainLogic implements BaseTrain {
+public class Train implements BaseTrain {
 
     private int _NID;
     private int _lastStationID, _nextStationID, _railRouteID;
@@ -15,7 +15,7 @@ public class TrainLogic implements BaseTrain {
 
     private ArrayList<Integer> stations;
 
-    public TrainLogic() {
+    public Train() {
         this._NID = 0;
         _lastStationID  = 0;
         _nextStationID  = 0;
@@ -30,7 +30,7 @@ public class TrainLogic implements BaseTrain {
         stations = null;
     }
 
-    public TrainLogic(int _NID, int VMax) {
+    public Train(int _NID, int VMax) {
         this._NID       = _NID;
         _lastStationID  = 0;
         _nextStationID  = 0;
