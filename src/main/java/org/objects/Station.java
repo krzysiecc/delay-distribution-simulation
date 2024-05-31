@@ -18,6 +18,7 @@ public class Station {
         y                   = 0;
         tracksNumber        = 0;
         currentTrainNumber  = 0;
+        // Czemu to jest float? Zgaduje, że to uproszczenie
         maxStationCapacity  = 0.0F;
         avgPassengerExchangeTime = 2;
     }

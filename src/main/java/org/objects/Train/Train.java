@@ -13,7 +13,8 @@ public class Train implements BaseTrain {
     public int currentV;
     private int VMax;
 
-    private ArrayList<Integer> stations;
+    private ArrayList<Integer> stationsLeft;
+    private ArrayList<Integer> stationsPassed;
 
     public Train() {
         this._NID = 0;
