@@ -18,7 +18,6 @@ public class Station {
         y                   = 0;
         tracksNumber        = 0;
         currentTrainNumber  = 0;
-        // Czemu to jest float? Zgaduje, że to uproszczenie
         maxStationCapacity  = 0.0F;
         avgPassengerExchangeTime = 2;
     }
@@ -33,7 +32,7 @@ public class Station {
         currentTrainNumber = 0; // < maxStationCapacity - 1
         this.avgPassengerExchangeTime = avgPassengerExchangeTime;
 
-        maxStationCapacity = Math.floor((60 / (avgPassengerExchangeTime + 2)) * (tracksNumber - 1));
+        maxStationCapacity = (60 / (avgPassengerExchangeTime + 2) * (tracksNumber - 1));
 
         System.out.println("Utworzono stację " + _stationID + " " + stationName + " na pozycji " +
                 x + " " + y + " z maksymalną przepustowością na poziomie " + maxStationCapacity + " cykli na godzinę.");

@@ -25,10 +25,11 @@ public class Train implements BaseTrain {
         _currentDelayNameID = "";
         currentDelay        = 0;
 
-        currentV = 0;
-        this.VMax = 160;
+        currentV    = 0;
+        this.VMax   = 160;
 
-        stations = null;
+        stationsLeft    = null;
+        stationsPassed  = null;
     }
 
     public Train(int _NID, int VMax) {
