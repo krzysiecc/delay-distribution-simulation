@@ -2,26 +2,25 @@ package org.dds.objects;
 
 public class Station {
 
-    private int _stationID;
+    private static int _stationID = 0;
     private String stationName;
-    private int x, y;
+    private double x, y;
     private int tracksNumber, currentTrainNumber;
     private double maxStationCapacity;
     private int avgPassengerExchangeTime;
 
     public Station() {
-        _stationID          = 0;
         stationName         = "";
-        x                   = 0;
-        y                   = 0;
+        x                   = 0.0;
+        y                   = 0.0;
         tracksNumber        = 0;
         currentTrainNumber  = 0;
         maxStationCapacity  = 0.0F;
         avgPassengerExchangeTime = 2;
     }
 
-    public Station(int _stationID, String stationName, int x, int y, int tracksNumber, int avgPassengerExchangeTime) {
-        this._stationID  = _stationID;
+    public Station(String stationName, double x, double y, int tracksNumber, int avgPassengerExchangeTime) {
+        _stationID++;
         this.stationName = stationName;
         this.x = x;
         this.y = y;
@@ -30,20 +29,25 @@ public class Station {
         currentTrainNumber = 0; // < maxStationCapacity - 1
         this.avgPassengerExchangeTime = avgPassengerExchangeTime;
 
-        maxStationCapacity = (60 / (avgPassengerExchangeTime + 2) * (tracksNumber - 1));
+        maxStationCapacity = ((double) 60 / (avgPassengerExchangeTime + 2) * (tracksNumber - 1));
 
         System.out.println("Utworzono stację " + _stationID + " " + stationName + " na pozycji " +
                 x + " " + y + " z maksymalną przepustowością na poziomie " + maxStationCapacity + " cykli na godzinę.");
     }
 
-//    Coordinates getPosition() {
-//        return new Coordinates(x, y);
-//    }
-    int get_stationID() {
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public int getStationID() {
         return _stationID;
     }
 
-    String getStationName() {
+    public String getStationName() {
         return stationName;
     }
 

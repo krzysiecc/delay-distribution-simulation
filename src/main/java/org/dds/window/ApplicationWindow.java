@@ -12,7 +12,6 @@ import java.util.Objects;
 
 public class ApplicationWindow extends Application {
 
-
     public static void main(String[] args) {
         Application.launch(args);
     }

@@ -1,13 +1,14 @@
 package org.dds.objects.Train;
 
 import org.dds.objects.BaseTrain;
+import org.dds.objects.Station;
 
 import java.util.ArrayList;
 
 public class Train implements BaseTrain {
 
     private int _NID;
-    private int _lastStationID, _nextStationID, _railRouteID;
+    private Station startStation, endStation;
     private String _currentDelayNameID;
     private int currentDelay;
     public int currentV;
@@ -17,10 +18,9 @@ public class Train implements BaseTrain {
     private ArrayList<Integer> stationsPassed;
 
     public Train() {
-        this._NID = 0;
-        _lastStationID  = 0;
-        _nextStationID  = 0;
-        _railRouteID    = 0;
+        this._NID       = 0;
+        startStation    = null;
+        endStation      = null;
 
         _currentDelayNameID = "";
         currentDelay        = 0;
@@ -32,11 +32,10 @@ public class Train implements BaseTrain {
         stationsPassed  = null;
     }
 
-    public Train(int _NID, int VMax) {
-        this._NID       = _NID;
-        _lastStationID  = 0;
-        _nextStationID  = 0;
-        _railRouteID    = 0;
+    public Train(int _NID, int VMax, Station startStation, Station endStation) {
+        this._NID         = _NID;
+        this.startStation = startStation;
+        this.endStation   = endStation;
 
         _currentDelayNameID = "";
         currentDelay        = 0;
@@ -63,5 +62,17 @@ public class Train implements BaseTrain {
     @Override
     public void calculateThroughput() {
 
+    }
+
+    public Station getStartStation() {
+        return startStation;
+    }
+
+    public Station getEndStation() {
+        return endStation;
+    }
+
+    public int get_NID() {
+        return _NID;
     }
 }

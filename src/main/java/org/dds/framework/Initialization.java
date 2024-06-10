@@ -7,8 +7,26 @@ import org.dds.objects.Delay.ZWA;
 import org.dds.objects.Route;
 import org.dds.objects.Station;
 import org.dds.objects.Train.PassengerTrain;
+import org.dds.objects.Train.Train;
+
+import java.util.ArrayList;
 
 public class Initialization {
+
+    private static double mapWidth;
+    private static double mapHeight;
+    private static ArrayList<Train> trainsOnMap;
+    private static ArrayList<Station> stations;
+    private static ArrayList<Route> routes;
+
+    public Initialization() {
+
+        // edits only manual
+        mapWidth  = 1200;
+        mapHeight = 650;
+
+        initializeObjects();
+    }
 
     private static void initializeObjects() {
 
@@ -17,14 +35,41 @@ public class Initialization {
         WCZ WCZInitialize = new WCZ(0.01F, 0.05F, true,501, "Wypadek z udziałem człowieka");
         ZWA ZWAInitilize = new ZWA(0.2F, 0.3F, false, 512, "Złe warunki atmosferyczne");
 
-        PassengerTrain IC1 = new PassengerTrain(50101, 160, 250, 350);
-        PassengerTrain IC2 = new PassengerTrain(60101, 120, 125,230);
+        // stations
+        stations = new ArrayList<>();
+        stations.add(new Station("POZNAŃ", 0.1 * mapWidth, 0.1 * mapHeight, 6, 5));
+        stations.add(new Station("ŁÓDŹ", 0.5 * mapWidth, 0.4 * mapHeight, 6, 5));
+        stations.add(new Station("WARSZAWA", 0.9 * mapWidth, 0.1 * mapHeight, 2, 3));
+        stations.add(new Station("WROCŁAW", 0.1 * mapWidth, 0.8 * mapHeight, 2, 3));
+        stations.add(new Station("OPOLE", 0.5 * mapWidth, 0.8 * mapHeight, 2, 3));
+        stations.add(new Station("KATOWICE", 0.9 * mapWidth, 0.8 * mapHeight, 2, 3));
 
-        Station S1 = new Station(1, "STACJA A", 20, 30, 6, 5);
-        Station S2 = new Station(2, "STACJA B", 10, -10, 2, 3);
+        // routes
+        routes = new ArrayList<>();
+        routes.add(new Route(true, 160, stations.get(0), stations.get(1)));
+        routes.add(new Route(true, 160, stations.get(1), stations.get(2)));
+        routes.add(new Route(true, 160, stations.get(0), stations.get(2)));
 
-        Route R001 = new Route(true, 160, S1, S2);
+        routes.add(new Route(true, 160, stations.get(3), stations.get(4)));
+        routes.add(new Route(true, 160, stations.get(4), stations.get(5)));
 
+        routes.add(new Route(true, 160, stations.get(0), stations.get(3)));
+        routes.add(new Route(false, 100, stations.get(1), stations.get(4)));
+
+        // trains
+        trainsOnMap = new ArrayList<>();
+        trainsOnMap.add(new PassengerTrain(50101, 160, stations.get(0), stations.get(1), 200,350));
+        trainsOnMap.add(new PassengerTrain(60101, 120, stations.get(3), stations.get(4),125,230));
     }
 
+    public static ArrayList<Train> getTrainsOnMap() throws NullPointerException {
+        return trainsOnMap;
+    }
+    public static ArrayList<Station> getStations() throws NullPointerException {
+        return stations;
+    }
+
+    public static ArrayList<Route> getRoutes() throws NullPointerException {
+        return routes;
+    }
 }
