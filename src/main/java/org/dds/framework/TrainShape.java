@@ -16,6 +16,8 @@ public class TrainShape extends Pane {
         Circle outputCircle = new Circle(0, 0, 10, Color.RED);
         Label number = new Label(String.valueOf(NID));
         number.setFont(new Font("Consolas",15));
+        number.setTranslateX(-20);
+        number.setTranslateY(8);
 
         trainShape = new Pane();
         trainShape.getChildren().addAll(outputCircle, number);
