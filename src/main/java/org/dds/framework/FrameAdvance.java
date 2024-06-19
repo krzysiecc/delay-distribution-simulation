@@ -36,7 +36,7 @@ public class FrameAdvance {
     }
 
     public static void adv() {
-        if(Passenger.isEmpty()) {
+        if (Passenger.isEmpty()) {
             return;
         }
 

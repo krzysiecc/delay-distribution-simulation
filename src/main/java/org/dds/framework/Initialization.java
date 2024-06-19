@@ -86,6 +86,7 @@ public class Initialization {
         WR_OB_ZG.add(WR_OB);
         WR_OB_ZG.add(OB_ZG);
         WR_OB_ZG.add(ZG_RW);
+
         /*
             At the moment, all trains are being generated at the same time of the simulation (limitations of the FrameAdvance parent-function)
             The parameters needed to create a Train object are:
