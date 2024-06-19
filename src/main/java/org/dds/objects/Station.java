@@ -1,50 +1,34 @@
 package org.dds.objects;
 
 public class Station {
+    private static int countStations = 0;
 
-    private static int _stationID = 0;
+    private int _stationID;
     private String stationName;
-    private double x, y;
-    private int tracksNumber, currentTrainNumber;
-    private double maxStationCapacity;
-    private int avgPassengerExchangeTime;
+    private int x, y;
 
     public Station() {
+        _stationID          = countStations++;
         stationName         = "";
-        x                   = 0.0;
-        y                   = 0.0;
-        tracksNumber        = 0;
-        currentTrainNumber  = 0;
-        maxStationCapacity  = 0.0F;
-        avgPassengerExchangeTime = 2;
+        x                   = 0;
+        y                   = 0;
     }
 
-    public Station(String stationName, double x, double y, int tracksNumber, int avgPassengerExchangeTime) {
-        _stationID++;
+    public Station(String stationName, int x, int y) {
+        _stationID  = countStations++;
         this.stationName = stationName;
         this.x = x;
         this.y = y;
-        this.tracksNumber = tracksNumber;
 
-        currentTrainNumber = 0; // < maxStationCapacity - 1
-        this.avgPassengerExchangeTime = avgPassengerExchangeTime;
-
-        maxStationCapacity = ((double) 60 / (avgPassengerExchangeTime + 2) * (tracksNumber - 1));
-
-        System.out.println("Utworzono stację " + _stationID + " " + stationName + " na pozycji " +
-                x + " " + y + " z maksymalną przepustowością na poziomie " + maxStationCapacity + " cykli na godzinę.");
+        System.out.println("Station " + _stationID + " " + stationName + " created on " + x + " X and " + y + " Y");
     }
 
-    public double getX() {
+    public int getX() {
         return x;
     }
 
-    public double getY() {
+    public int getY() {
         return y;
-    }
-
-    public int getStationID() {
-        return _stationID;
     }
 
     public String getStationName() {

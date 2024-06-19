@@ -1,4 +1,4 @@
-package org.dds.framework;
+package org.dds.builder;
 
 import javafx.animation.ScaleTransition;
 import javafx.scene.control.Label;
@@ -12,7 +12,7 @@ import org.dds.objects.Station;
 public class TrainShape extends Pane {
     private Pane trainShape;
 
-    public TrainShape(int NID, Station start) {
+    public TrainShape(int NID, double currentX, double currentY) {
         Circle outputCircle = new Circle(0, 0, 10, Color.RED);
         Label number = new Label(String.valueOf(NID));
         number.setFont(new Font("Consolas",15));
@@ -22,8 +22,8 @@ public class TrainShape extends Pane {
         trainShape = new Pane();
         trainShape.getChildren().addAll(outputCircle, number);
 
-        trainShape.setTranslateX(start.getX() + 25);
-        trainShape.setTranslateY(start.getY() + 20);
+        trainShape.setTranslateX(currentX + 25);
+        trainShape.setTranslateY(currentY + 20);
 
         ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(240), trainShape);
         scaleTransition.setFromX(1);

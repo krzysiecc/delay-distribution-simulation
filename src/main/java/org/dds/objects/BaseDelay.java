@@ -1,9 +1,14 @@
 package org.dds.objects;
 
-public interface BaseDelay {
-    int calculateDelay(int totalRouteTime);
-    void lookForOtherTrain(int codeA, int codeB);
+/**
+ * Every frame, an activated "lottery" or delay will be triggered, according to previously initialized probabilistic values.
+ * After that, it selects a random train and checks whether it already has a delay, if not, we impose a delay on it.
+ * If it doesn't find the train without delay after 500 tries, function gives up and ends with an empty return.
+ */
 
-    void getID();
-    void getInformation();
+public interface BaseDelay {
+
+	void moveFrame();
+
+	String getNameID();
 }

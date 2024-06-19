@@ -2,93 +2,135 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane prefHeight="960.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.dds.controller.MainSceneController">
-
-<padding>
-    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-</padding>
-<opaqueInsets>
-    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-</opaqueInsets>
-<children>
-      <Pane maxHeight="150.0" prefHeight="150.0" prefWidth="1260.0" StackPane.alignment="BOTTOM_CENTER">
+<VBox alignment="TOP_CENTER" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.dds.controller.MainSceneController">
+   <children>
+      <MenuBar VBox.vgrow="NEVER">
+         <menus>
+            <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <MenuItem disable="true" mnemonicParsing="false" text="Welcome" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem disable="true" mnemonicParsing="false" text="Preferences…" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="exitButton" mnemonicParsing="false" text="Quit" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="About">
+               <items>
+                  <MenuItem fx:id="docsButton" mnemonicParsing="false" text="Documentation" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem disable="true" mnemonicParsing="false" text="v0.2a © 2024" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="20.0" prefWidth="-1.0" VBox.vgrow="ALWAYS" />
+      <HBox alignment="CENTER" prefHeight="100.0" VBox.vgrow="NEVER">
          <children>
-              <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="1070.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                      <Image url="@train_conductor_icon.jpg" />
-                  </image>
-              </ImageView>
-            <TextArea fx:id="consoleInfo" editable="false" layoutX="24.0" maxHeight="150.0" maxWidth="1073.0" minHeight="150.0" minWidth="1035.0" prefHeight="150.0" prefWidth="1039.0" promptText="console out">
-               <font>
-                  <Font name="Consolas" size="12.0" />
-               </font>
-            </TextArea>
+            <Pane prefHeight="100.0" prefWidth="360.0">
+               <children>
+                  <Text fx:id="clock" layoutX="15.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00000" wrappingWidth="86.0">
+                     <font>
+                        <Font name="Consolas Bold" size="22.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="dayOfTheWeek" layoutX="135.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="niedziela">
+                     <font>
+                        <Font name="Consolas" size="11.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="date" layoutX="135.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2024-06-09">
+                     <font>
+                        <Font name="Consolas Bold" size="22.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="16.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="krok symulacji">
+                     <font>
+                        <Font name="Consolas" size="11.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT">
+               <opaqueInsets>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </opaqueInsets>
+               <children>
+                  <Button fx:id="startButton" layoutX="153.0" layoutY="5.0" minWidth="145.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="145.0" text="START">
+                     <font>
+                        <Font name="Consolas" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="stopButton" layoutY="5.0" minWidth="145.0" mnemonicParsing="false" text="STOP">
+                     <font>
+                        <Font name="Consolas" size="20.0" />
+                     </font>
+                  </Button>
+                  <Slider fx:id="animationSpeed" blockIncrement="1.0" layoutX="59.0" layoutY="50.0" majorTickUnit="1.0" max="4.0" maxHeight="30.0" min="1.0" minHeight="30.0" minorTickCount="0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="180.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
+                  <SVGPath content="M24 22h-24l12-20z" fill="#727272" layoutX="250.0" layoutY="50.0" rotate="90.0" scaleX="0.5" scaleY="0.5" scaleZ="0.5" />
+                  <SVGPath content="M24 22h-24l12-20z" fill="#727272" layoutX="240.0" layoutY="50.0" rotate="90.0" scaleX="0.5" scaleY="0.5" scaleZ="0.5" strokeType="OUTSIDE" />
+                  <Text layoutX="235.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x">
+                     <font>
+                        <Font size="9.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane prefHeight="100.0" prefWidth="360.0" />
          </children>
+      </HBox>
+      <Pane fx:id="simulationMap" maxWidth="1000.0" prefHeight="500.0" VBox.vgrow="NEVER">
+         <VBox.margin>
+            <Insets bottom="10.0" top="10.0" />
+         </VBox.margin>
       </Pane>
-      <Pane maxHeight="90.0" maxWidth="450.0" prefHeight="90.0" prefWidth="450.0" StackPane.alignment="TOP_LEFT">
+      <HBox alignment="CENTER" prefHeight="100.0">
          <children>
-            <Text fx:id="clock" layoutX="14.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00000" wrappingWidth="86.0">
-               <font>
-                  <Font name="Consolas Bold" size="31.0" />
-               </font>
-            </Text>
-            <Text fx:id="dayOfTheWeek" layoutX="153.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="niedziela">
-               <font>
-                  <Font name="Consolas" size="15.0" />
-               </font>
-            </Text>
-            <Text fx:id="date" layoutX="153.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2024-06-09">
-               <font>
-                  <Font name="Consolas Bold" size="32.0" />
-               </font>
-            </Text>
-            <Text layoutX="14.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="krok symulacji">
-               <font>
-                  <Font name="Consolas" size="15.0" />
-               </font>
-            </Text>
+            <Pane prefHeight="100.0" prefWidth="800.0">
+               <children>
+                  <TextArea fx:id="consoleInfo" editable="false" prefHeight="100.0" prefWidth="800.0" promptText="console out">
+                     <font>
+                        <Font name="Consolas" size="12.0" />
+                     </font>
+                  </TextArea>
+               </children>
+            </Pane>
+            <Pane nodeOrientation="LEFT_TO_RIGHT" prefWidth="100.0">
+               <opaqueInsets>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </opaqueInsets>
+            </Pane>
+            <Pane prefHeight="100.0" prefWidth="100.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@train_conductor_icon.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
          </children>
-      </Pane>
-      <Pane maxHeight="90.0" maxWidth="300.0" minWidth="300.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="90.0" prefWidth="300.0" StackPane.alignment="TOP_CENTER">
-         <opaqueInsets>
+      </HBox>
+      <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+         <VBox.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </opaqueInsets>
-         <children>
-            <Button fx:id="startButton" layoutX="153.0" layoutY="5.0" minWidth="145.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="145.0" text="START">
-               <font>
-                  <Font name="Consolas" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="stopButton" layoutY="5.0" minWidth="145.0" mnemonicParsing="false" text="STOP">
-               <font>
-                  <Font name="Consolas" size="20.0" />
-               </font>
-            </Button>
-            <Slider fx:id="animationSpeed" blockIncrement="1.0" layoutX="59.0" layoutY="50.0" majorTickUnit="1.0" max="4.0" maxHeight="30.0" min="1.0" minHeight="30.0" minorTickCount="0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="180.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
-            <SVGPath content="M24 22h-24l12-20z" fill="#727272" layoutX="250.0" layoutY="50.0" rotate="-90.0" scaleX="0.5" scaleY="0.5" scaleZ="0.5" />
-            <SVGPath content="M24 22h-24l12-20z" fill="#727272" layoutX="240.0" layoutY="50.0" rotate="-90.0" scaleX="0.5" scaleY="0.5" scaleZ="0.5" strokeType="OUTSIDE" />
-            <Text layoutX="58.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x">
-               <font>
-                  <Font size="9.0" />
-               </font>
-            </Text>
-         </children>
-      </Pane>
-      <Button fx:id="exitButton" alignment="BOTTOM_CENTER" contentDisplay="RIGHT" graphicTextGap="10.0" minWidth="70.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="124.0" text="ZAMKNIJ OKNO" textAlignment="CENTER" textFill="RED" translateY="5.0" StackPane.alignment="TOP_RIGHT">
-         <font>
-            <Font name="Consolas" size="15.0" />
-         </font>
-      </Button>
-      <Pane fx:id="simulationMap" maxHeight="650.0" maxWidth="1200.0" minHeight="650.0" minWidth="1200.0" prefHeight="650.0" prefWidth="1200.0" translateY="-30.0" StackPane.alignment="CENTER" />
-</children>
-</StackPane>
+         </VBox.margin>
+      </AnchorPane>
+   </children>
+</VBox>

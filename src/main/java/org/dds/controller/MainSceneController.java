@@ -9,28 +9,29 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
-import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.scene.control.Button;
-import javafx.scene.control.Slider;
 import javafx.util.Duration;
+import org.dds.framework.Initialization;
+import org.dds.builder.RouteShape;
+import org.dds.builder.StationShape;
+import org.dds.builder.TrainShape;
+import org.dds.objects.Track;
+import org.dds.objects.Station;
+import org.dds.objects.Train;
 
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
-import org.dds.framework.Initialization;
-import org.dds.framework.RouteShape;
-import org.dds.framework.StationShape;
-import org.dds.framework.TrainShape;
-import org.dds.objects.Route;
-import org.dds.objects.Station;
-import org.dds.objects.Train.Train;
+import java.awt.Desktop;
+import java.net.URI;
 
 public class MainSceneController implements Initializable {
 
@@ -56,23 +57,37 @@ public class MainSceneController implements Initializable {
     private Button stopButton;
 
     @FXML
-    private Button exitButton;
+    private Slider animationSpeed;
 
     @FXML
-    private Slider animationSpeed;
+    private MenuItem docsButton;
+
+    @FXML
+    private MenuItem exitButton;
 
     private DoubleProperty animationSpeedHandler;
     private Timeline simulation;
     private static int ANIMATION_FRAME = 0;
 
     private Group trainsOnMap;
+    private ArrayList<Train> trains;
 
     /**
-     * Wykonywane dopiero po załadowaniu roota (okna MainScene dla którego wywołujemy funkcję initialize)
+     *  <p>After initializing all the FXML objects (inherited from .fxml file through an override) function initialize() from controller initialization interface
+     * {@link Initializable} is induced. The approach is mainly focused on a injection template, thus in consequence it helps with the background initialization of the main controller
+     * controlling visible elements of the simulation. </p>
+     *
+     * <p> In the overridden initialize function there are 4 other co-related functions called:
+     *     </p>
+     * <p>initializeSimulation() - initializing simulation Timeline object (setting cycle count to infinite)</p>
+     * <p>initializeMap() - initializing visible map objects ({@link Station}, {@link Track} and {@link Train})</p>
+     * <p>initializeInterfaceObjects() - creating actions and responses for UI elements</p>
+     * <p>initializeTickControl() - delegating tick control to other elements</p>
      */
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         initializeSimulation();
 
         initializeMap();
@@ -94,36 +109,39 @@ public class MainSceneController implements Initializable {
     private void initializeMap() {
 
         // Initialization class methods
-        new Initialization();
+        Initialization.initializeObjects();
+
         //
 
         ArrayList<Station> stationCoordinates = Initialization.getStations();
         Group stationPoints = new Group();
 
-        // change coordinates into visible circles
+        // Change coordinates into visible circles
+
         for (Station station : stationCoordinates) {
             stationPoints.getChildren().add(new StationShape(station.getStationName(), station.getX(), station.getY()).createStation());
         }
 
-        ArrayList<Route> routeCoordinates = Initialization.getRoutes();
+        ArrayList<Track> trackCoordinates = Initialization.getTracks();
         Group routeLines = new Group();
 
-        // change coordinates into visible lines
-        for (Route route : routeCoordinates) {
+        // Change coordinates into visible lines
+
+        for (Track track : trackCoordinates) {
             routeLines.getChildren().add(new RouteShape(
-                    route.isSecondTrack(),
-                    route.getStart().getX(),
-                    route.getStart().getY(),
-                    route.getEnd().getX(),
-                    route.getEnd().getY()).createRoute());
+                    track.isSecondTrack(),
+                    track.getPoint1().getX(),
+                    track.getPoint1().getY(),
+                    track.getPoint2().getX(),
+                    track.getPoint2().getY()).createRoute());
         }
 
-        ArrayList<Train> trainList = Initialization.getTrainsOnMap();
+        trains = Initialization.getTrains();
         trainsOnMap = new Group();
 
         // create trains
-        for (Train train : trainList) {
-            trainsOnMap.getChildren().add(new TrainShape(train.get_NID(), train.getStartStation()).createTrain());
+        for (Train train : trains) {
+            trainsOnMap.getChildren().add(new TrainShape(train.getTrainID(), train.getX(), train.getY()).createTrain());
         }
 
         simulationMap.setBorder(new Border(new BorderStroke(Color.GRAY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
@@ -159,6 +177,10 @@ public class MainSceneController implements Initializable {
             stopButton.setDisable(true);
         });
 
+        docsButton.setOnAction(event -> {
+            openDocURL();
+        });
+
         exitButton.setOnAction(event -> {
             Platform.exit();
         });
@@ -176,12 +198,24 @@ public class MainSceneController implements Initializable {
         simulation.getKeyFrames().add(
                 new KeyFrame(Duration.seconds(0.2), event -> {
                     trainsOnMap.getChildren().forEach(train -> {
-                        train.setTranslateX(train.getTranslateX() + 1);
+
                     });
                 })
         );
     }
 
+    private void openDocURL() {
+        try {
+            // Ensure that the Desktop API is supported on the current platform
+            if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+                Desktop.getDesktop().browse(new URI("https://github.com/krzysiecc/delay-distribution-simulation/tree/master"));
+            } else {
+                System.out.println("Desktop or browse action not supported");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 
     public double getAnimationSpeed() {
         return animationSpeedHandler.get();

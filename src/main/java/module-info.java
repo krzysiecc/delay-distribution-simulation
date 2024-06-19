@@ -1,6 +1,7 @@
 module org.dds {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.desktop;
 
 
     opens org.dds.controller to javafx.fxml;
