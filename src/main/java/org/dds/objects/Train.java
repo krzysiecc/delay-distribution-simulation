@@ -57,6 +57,7 @@ public class Train implements BaseTrain {
      *                                be always known at easy to check.
      */
 
+    private int startFrame;
     public Train() {
         tracksLeft = new LinkedList<>();
         fm = new FileManager("default.txt");
@@ -69,6 +70,7 @@ public class Train implements BaseTrain {
         angleY  = 0;
         lp 		= 0;
         gd 		= 0;
+        startFrame = 0;
 
         framesOfExistence = -1;
 
@@ -78,9 +80,9 @@ public class Train implements BaseTrain {
 		endOfRoute = false;
     }
 
-    public Train(int _NID, Station _startStation, LinkedList<Track> tracksLeft) {
+    public Train(int _NID, Station _startStation, LinkedList<Track> tracksLeft, int startFrame) {
         this._NID = _NID;
-
+        this.startFrame = startFrame;
         /*
          * Because we start counting frames before the train even ends up
          * moving, it always ends up being a frame late, so we make it
@@ -103,7 +105,6 @@ public class Train implements BaseTrain {
 			this.reversor = false;
 			currentTrack = this.tracksLeft.getFirst();
 		} else {
-			this._NID++;
 			this.reversor = true;
 			currentTrack = this.tracksLeft.getLast();
 		}
@@ -230,17 +231,17 @@ public class Train implements BaseTrain {
 		Station to;
 		Track n;
 
-		for (int i = 0; i < tracksLeft.size(); i++) {
-			n = tracksLeft.get(i);
-			to = whereTo(from, n);
-			x = Math.abs(to.getX() - from.getX());
-			y = Math.abs(to.getY() - from.getY());
+        for (Track track : tracksLeft) {
+            n = track;
+            to = whereTo(from, n);
+            x = Math.abs(to.getX() - from.getX());
+            y = Math.abs(to.getY() - from.getY());
 
-			dis = Math.sqrt(Math.pow(x,2) + Math.pow(y,2));
+            dis = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
 
-			from = to;
-			time += (int)Math.ceil(dis / n.getVMax()*6);
-		}
+            from = to;
+            time += (int) Math.ceil(dis / n.getVMax() * 6);
+        }
 
 		return time;
 	}
@@ -252,7 +253,7 @@ public class Train implements BaseTrain {
 		// Train can't move if delay has been applied
 		if (currentDelay > 0) {
 
-			fm.writeToFile("DELAY: " + currentDelay + "\n");
+			// fm.writeToFile("DELAY: " + currentDelay + "\n");
 			currentDelay--;
 
 			return false;
@@ -277,15 +278,7 @@ public class Train implements BaseTrain {
             y += disY;
         }
 
-		fm.writeToFile("STEP: " + x + ";" + y + ";" + framesOfExistence + ";" + currentDelay + "\n");
-
-		/*
-		    W konsoli zawsze będzie wypisana pozycja pociągu który właśnie
-			dojechał do stacji 2 razy w ciągu jednej klatki.
-		    Nie jest to przypadek jednego ruchu na dwie klatki.
-
-		    (krzysiu) nie rozumiem
-		*/
+		// fm.writeToFile("STEP: " + x + ";" + y + ";" + framesOfExistence + ";" + currentDelay + "\n");
 
         return false;
     }
@@ -329,4 +322,8 @@ public class Train implements BaseTrain {
 	public boolean isEndOfRoute() {
 		return endOfRoute;
 	}
+
+    public int getStartFrame() {
+        return startFrame;
+    }
 }

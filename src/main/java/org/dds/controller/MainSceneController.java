@@ -9,6 +9,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Slider;
@@ -17,6 +18,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import org.dds.framework.FrameAdvance;
 import org.dds.framework.Initialization;
 import org.dds.builder.RouteShape;
 import org.dds.builder.StationShape;
@@ -33,6 +35,7 @@ import java.util.ResourceBundle;
 import java.awt.Desktop;
 import java.net.URI;
 
+import static org.dds.framework.Clock.*;
 import static org.dds.framework.FrameAdvance.adv;
 
 public class MainSceneController implements Initializable {
@@ -69,7 +72,6 @@ public class MainSceneController implements Initializable {
 
     private DoubleProperty animationSpeedHandler;
     private Timeline simulation;
-    private static int ANIMATION_FRAME = 0;
 
     private Group trainsOnMap;
     private ArrayList<Train> trains;
@@ -140,10 +142,12 @@ public class MainSceneController implements Initializable {
 
         trains = Initialization.getTrains();
         trainsOnMap = new Group();
-
-        // create trains
         for (Train train : trains) {
             trainsOnMap.getChildren().add(new TrainShape(train).createTrain());
+        }
+
+        for (Node trainshape : trainsOnMap.getChildren()) {
+            trainshape.setVisible(false);
         }
 
         simulationMap.setBorder(new Border(new BorderStroke(Color.GRAY, BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT)));
@@ -191,16 +195,28 @@ public class MainSceneController implements Initializable {
     // moving objects
     private void initializeTickControl() {
         simulation.getKeyFrames().add(
-                new KeyFrame(Duration.seconds(0.2), event -> {
-                    clock.setText(String.format("%05d", ++ANIMATION_FRAME));
-                    adv();
-                    for (int i = 0; i < trains.size(); i++) {
-                        if (trains.get(i).isEndOfRoute()) {
-                            trainsOnMap.getChildren().get(i).setVisible(false);
-                        }
+                new KeyFrame(Duration.seconds(0.1), event -> {
 
-                        trainsOnMap.getChildren().get(i).setTranslateX(trains.get(i).getX());
-                        trainsOnMap.getChildren().get(i).setTranslateY(trains.get(i).getY());
+                    simulate();
+
+                    if (disposeGraphic()) {
+                        clock.setText(String.format("%05d", ANIMATION_FRAME));
+
+                        for (int i = 0; i < trains.size(); i++) {
+
+                            if (ANIMATION_FRAME == trains.get(i).getStartFrame()) {
+                                trainsOnMap.getChildren().get(i).setVisible(true);
+                                FrameAdvance.addPassenger(trains.get(i));
+
+                            }
+
+                            if (trains.get(i).isEndOfRoute()) {
+                                trainsOnMap.getChildren().get(i).setVisible(false);
+                            }
+
+                            trainsOnMap.getChildren().get(i).setTranslateX(trains.get(i).getX());
+                            trainsOnMap.getChildren().get(i).setTranslateY(trains.get(i).getY());
+                        }
                     }
                 })
         );

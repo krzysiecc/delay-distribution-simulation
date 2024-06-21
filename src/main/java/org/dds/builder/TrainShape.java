@@ -11,19 +11,22 @@ import org.dds.objects.Station;
 import org.dds.objects.Train;
 
 public class TrainShape extends Pane {
-    private Pane trainShape;
+    private final Pane trainShape;
+    private final Train train;
 
     public TrainShape(Train train) {
+        this.train = train;
+
         Circle outputCircle = new Circle(0, 0, 10, Color.RED);
-        Label number = new Label(String.valueOf(train.getTrainID()));
+        Label number = new Label(String.valueOf(this.train.getTrainID()));
         number.setFont(new Font("Consolas",15));
         number.setTranslateX(-20);
         number.setTranslateY(8);
 
         trainShape = new Pane();
         trainShape.getChildren().addAll(outputCircle, number);
-        trainShape.setTranslateX(train.getX());
-        trainShape.setTranslateY(train.getY());
+        trainShape.setTranslateX(this.train.getX());
+        trainShape.setTranslateY(this.train.getY());
 
         ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(240), trainShape);
         scaleTransition.setFromX(1);
@@ -48,7 +51,11 @@ public class TrainShape extends Pane {
 
     }
 
+    public int getID() {
+        return this.train.getTrainID();
+    }
     public Pane createTrain() {
+        //trainShape.setVisible(false);
         return trainShape;
     }
 }

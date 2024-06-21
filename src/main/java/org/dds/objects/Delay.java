@@ -33,7 +33,7 @@ public class Delay implements BaseDelay {
 	@Override
 	public void moveFrame() {
 
-		if(Math.random() < minProbability / 60) {
+		if(Math.random() < minProbability / 30) {
 			abort = 0;
 			System.out.println("Delay imposed: " + nameID);
 			randomTrain = findTrain();

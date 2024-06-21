@@ -9,6 +9,8 @@ import org.dds.objects.Train;
 
 import java.util.*;
 
+import static org.dds.framework.Clock.ANIMATION_FRAME;
+
 public class Initialization {
 
     /*
@@ -167,23 +169,23 @@ public class Initialization {
 
         trains = new ArrayList<>();
 
-        Train KD66102 = new Train(66102, WRO, WRO_WALB_WRO ); processTrains(KD66102);
-        Train KD66104 = new Train(66104, WALB, WRO_WALB_WRO ); processTrains(KD66104);
+        Train KD66102 = new Train(66102, WRO, WRO_WALB_WRO, 1); processTrains(KD66102);
+        Train KD66104 = new Train(66104, WALB, WRO_WALB_WRO, 1); processTrains(KD66104);
 
-        Train KD66812 = new Train(66812, WRO, WRO_DSL_WRO ); processTrains(KD66812);
-        Train KD66814 = new Train(66814, DSL, WRO_DSL_WRO ); processTrains(KD66814);
+        Train KD66812 = new Train(66812, WRO, WRO_DSL_WRO, 21); processTrains(KD66812);
+        Train KD66814 = new Train(66814, DSL, WRO_DSL_WRO, 27); processTrains(KD66814);
 
-        Train KD66298 = new Train(66298, DSL, DSL_JSL_DSL ); processTrains(KD66298);
-        Train KD66296 = new Train(66296, JSL, DSL_JSL_DSL ); processTrains(KD66296);
+        Train KD66298 = new Train(66298, DSL, DSL_JSL_DSL, 39 ); processTrains(KD66298);
+        Train KD66296 = new Train(66296, JSL, DSL_JSL_DSL, 59 ); processTrains(KD66296);
 
-        Train KD66342 = new Train(66342, WRO, WRO_LEG_WRO ); processTrains(KD66342);
-        Train KD66348 = new Train(66348, LEG, WRO_LEG_WRO ); processTrains(KD66348);
+        Train KD66342 = new Train(66342, WRO, WRO_LEG_WRO, 61 ); processTrains(KD66342);
+        Train KD66348 = new Train(66348, LEG, WRO_LEG_WRO, 34 ); processTrains(KD66348);
 
-        Train KD66122 = new Train(66122, WRO, WRO_RAW_WRO ); processTrains(KD66122);
-        Train KD66124 = new Train(66124, RAW, WRO_RAW_WRO ); processTrains(KD66124);
+        Train KD66122 = new Train(66122, WRO, WRO_RAW_WRO, 33 ); processTrains(KD66122);
+        Train KD66124 = new Train(66124, RAW, WRO_RAW_WRO, 43 ); processTrains(KD66124);
 
-        Train R67098 = new Train(67098, WRO, WRO_OPL_WRO ); processTrains(R67098);
-        Train R67102 = new Train(67102, OPL, WRO_OPL_WRO ); processTrains(R67102);
+        Train R67098 = new Train(67098, WRO, WRO_OPL_WRO, 53 ); processTrains(R67098);
+        Train R67102 = new Train(67102, OPL, WRO_OPL_WRO, 53 ); processTrains(R67102);
     }
 
     public static void processStation(Station station) {
@@ -192,7 +194,6 @@ public class Initialization {
     }
 
     public static void processTrains(Train train) {
-        FrameAdvance.addPassenger(train);
         trains.add(train);
     }
 
