@@ -30,6 +30,7 @@ public class Train implements BaseTrain {
     private Track currentTrack;
 	private boolean endOfRoute;
     private double x, y;
+    private int backAndForth;
 
     // The angle of the train between it and the station as well
     // as calculation guide variables.
@@ -80,9 +81,10 @@ public class Train implements BaseTrain {
 		endOfRoute = false;
     }
 
-    public Train(int _NID, Station _startStation, LinkedList<Track> tracksLeft, int startFrame) {
+    public Train(int _NID, Station _startStation, LinkedList<Track> tracksLeft, int startFrame, int backAndForth) {
         this._NID = _NID;
         this.startFrame = startFrame;
+        this.backAndForth = backAndForth;
         /*
          * Because we start counting frames before the train even ends up
          * moving, it always ends up being a frame late, so we make it
@@ -158,7 +160,13 @@ public class Train implements BaseTrain {
 	        VMax = currentTrack.getVMax();
 
 	        fm.writeToFile("NEW DIRECTION: " + _startStation.getStationName() + ";" + _nextStation.getStationName() + ";" + framesOfExistence +  ";" + VMax + "\n");
-	    } else {
+	    } else if (backAndForth > 0) {
+            backAndForth--;
+            trackIteration = -1;
+            reversor = !reversor;
+            reachedDestination();
+
+        } else {
 			currentTrack.cleanTrain(this);
 	        fm.writeToFile("(!) END OF ROUTE: " + anticipatedTravelTime + ";" + framesOfExistence + ";" + (framesOfExistence - anticipatedTravelTime) + ";" + _nextStation.getStationName() +"\n");
 			endOfRoute = true;
