@@ -251,7 +251,7 @@ public class Train implements BaseTrain {
             time += (int) Math.ceil(dis / n.getVMax() * 6);
         }
 
-		return time;
+		return (time * (backAndForth +1));
 	}
 
 	@Override
