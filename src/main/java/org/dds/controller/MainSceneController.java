@@ -33,6 +33,8 @@ import java.util.ResourceBundle;
 import java.awt.Desktop;
 import java.net.URI;
 
+import static org.dds.framework.FrameAdvance.adv;
+
 public class MainSceneController implements Initializable {
 
     @FXML
@@ -141,10 +143,10 @@ public class MainSceneController implements Initializable {
 
         // create trains
         for (Train train : trains) {
-            trainsOnMap.getChildren().add(new TrainShape(train.getTrainID(), train.getX(), train.getY()).createTrain());
+            trainsOnMap.getChildren().add(new TrainShape(train).createTrain());
         }
 
-        simulationMap.setBorder(new Border(new BorderStroke(Color.GRAY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+        simulationMap.setBorder(new Border(new BorderStroke(Color.GRAY, BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT)));
         simulationMap.getChildren().add(routeLines);
         simulationMap.getChildren().add(stationPoints);
         simulationMap.getChildren().add(trainsOnMap);
@@ -188,18 +190,18 @@ public class MainSceneController implements Initializable {
 
     // moving objects
     private void initializeTickControl() {
-        ANIMATION_FRAME = 0;
         simulation.getKeyFrames().add(
                 new KeyFrame(Duration.seconds(0.2), event -> {
                     clock.setText(String.format("%05d", ++ANIMATION_FRAME));
-                })
-        );
+                    adv();
+                    for (int i = 0; i < trains.size(); i++) {
+                        if (trains.get(i).isEndOfRoute()) {
+                            trainsOnMap.getChildren().get(i).setVisible(false);
+                        }
 
-        simulation.getKeyFrames().add(
-                new KeyFrame(Duration.seconds(0.2), event -> {
-                    trainsOnMap.getChildren().forEach(train -> {
-
-                    });
+                        trainsOnMap.getChildren().get(i).setTranslateX(trains.get(i).getX());
+                        trainsOnMap.getChildren().get(i).setTranslateY(trains.get(i).getY());
+                    }
                 })
         );
     }

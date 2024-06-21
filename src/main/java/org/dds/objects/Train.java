@@ -28,7 +28,7 @@ public class Train implements BaseTrain {
     private LinkedList<Track> tracksLeft;
     private int trackIteration;
     private Track currentTrack;
-
+	private boolean endOfRoute;
     private double x, y;
 
     // The angle of the train between it and the station as well
@@ -75,10 +75,11 @@ public class Train implements BaseTrain {
 		currentDelay = 0;
         this.VMax    = 100;
 
+		endOfRoute = false;
     }
 
-    public Train(Station _startStation, LinkedList<Track> tracksLeft) {
-        _NID = countTrains++;
+    public Train(int _NID, Station _startStation, LinkedList<Track> tracksLeft) {
+        this._NID = _NID;
 
         /*
          * Because we start counting frames before the train even ends up
@@ -102,6 +103,7 @@ public class Train implements BaseTrain {
 			this.reversor = false;
 			currentTrack = this.tracksLeft.getFirst();
 		} else {
+			this._NID++;
 			this.reversor = true;
 			currentTrack = this.tracksLeft.getLast();
 		}
@@ -119,16 +121,18 @@ public class Train implements BaseTrain {
         getDirection();
 
         fm.writeToFile("START: " + this._startStation.getStationName() + ";" + _nextStation.getStationName() + ";" + currentTrack.getID() + ";" + VMax + ";" + anticipatedTravelTime + ";" + framesOfExistence + "\n");
-    }
+
+		endOfRoute = false;
+	}
 
     private Station whereTo(Station from, Track on) {
 
         /*
          * We check from where the train comes from, and we compare it
          * to the point connected to the track, and choose the one which
-         * the train doesn't come from. This allows biderctional use of
+         * the train doesn't come from. This allows bidirectional use of
          * one path set.
-         */
+        */
 
         if (from == on.getPoint1()) {
             return on.getPoint2();
@@ -156,7 +160,7 @@ public class Train implements BaseTrain {
 	    } else {
 			currentTrack.cleanTrain(this);
 	        fm.writeToFile("(!) END OF ROUTE: " + anticipatedTravelTime + ";" + framesOfExistence + ";" + (framesOfExistence - anticipatedTravelTime) + ";" + _nextStation.getStationName() +"\n");
-
+			endOfRoute = true;
 			// kill object
 			return true;
 		}
@@ -254,9 +258,9 @@ public class Train implements BaseTrain {
 			return false;
 		}
 
-		// A single frame is 10 min, so we have to compensate the speed which is in km/h
+		// A single frame is 1 min, so we have to compensate the speed which is in km/h
 
-        double ruch = (double) VMax / 6;
+        double ruch = (double) VMax / 60;
         double disX = (lp * angleX * ruch);
         double disY = (gd * angleY * ruch);
 
@@ -322,4 +326,7 @@ public class Train implements BaseTrain {
 		return _NID;
 	}
 
+	public boolean isEndOfRoute() {
+		return endOfRoute;
+	}
 }

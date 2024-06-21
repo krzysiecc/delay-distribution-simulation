@@ -1,10 +1,10 @@
 package org.dds.builder;
 
 import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 
 public class StationShape extends StackPane {
 
@@ -16,6 +16,8 @@ public class StationShape extends StackPane {
         Circle outputCircleBorder = new Circle(0, 0, 10, Color.BLACK);
 
         Label id = new Label(stationName);
+        id.setTranslateX(10);
+        id.setTranslateY(4);
 
         stationShape = new Pane();
         stationShape.setTranslateX(X);
