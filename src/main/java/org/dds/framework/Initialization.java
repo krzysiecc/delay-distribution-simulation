@@ -33,7 +33,7 @@ public class Initialization {
     public static void initializeObjects() {
 
         // here you can choose all simulation settings
-        independentEventsRate = 500;
+        independentEventsRate = 10;
 
         /*
             Each station is initialized separately and uniquely.

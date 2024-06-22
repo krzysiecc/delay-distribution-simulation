@@ -4,24 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4dfc3e98-b6f7-4379-a8cd-9fdbe5ebb0d9" name="Changes" comment="">
+    <list default="true" id="c4999746-e821-4eca-bcfa-095951fc212c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/doc-projekt.docx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/doc-projekt.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/img/45681.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/img/DDS-OD-1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/img/DDS-OD-2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/img/DDS-SS-1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/img/DDS-SS-niepoprawne.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/img/DDS-UCD-1-left.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/img/DDS-UCD-1-poprawione.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/img/DDS-UCD-1-right.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/img/clock_icon.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/img/title-image1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/img/title-image1.psd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/licenses/LICENSE-vecteezy.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/sources/Instrukcja-o-prowadzeniu-ruchu-pociagow-Ir-1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dds/framework/Initialization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dds/framework/Initialization.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,17 +26,29 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 5
-}</component>
-  <component name="ProjectId" id="2iFNJc0fJTtW1Kte0GLQ3GrmniB" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="2iFSyK1bCQ84Aa7voeQVHVxFaEr" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -53,24 +58,83 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "dev",
+    "git-widget-placeholder": "master",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="gradle clean build" />
+      <command value="gradle run" />
+    </option>
+  </component>
+  <component name="RunManager" selected="Gradle.delay-distribution-simulation [run]">
+    <configuration name="delay-distribution-simulation [clean build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="delay-distribution-simulation [run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="run" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.delay-distribution-simulation [run]" />
+        <item itemvalue="Gradle.delay-distribution-simulation [clean build]" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="4dfc3e98-b6f7-4379-a8cd-9fdbe5ebb0d9" name="Changes" comment="" />
-      <created>1719082301168</created>
+      <changelist id="c4999746-e821-4eca-bcfa-095951fc212c" name="Changes" comment="" />
+      <created>1719085086409</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1719082301168</updated>
-      <workItem from="1719082309908" duration="32000" />
-      <workItem from="1719082365449" duration="750000" />
+      <updated>1719085086409</updated>
+      <workItem from="1719085088453" duration="1207000" />
     </task>
     <servers />
   </component>
