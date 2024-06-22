@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4dfc3e98-b6f7-4379-a8cd-9fdbe5ebb0d9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/doc-projekt.docx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/doc-projekt.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/img/45681.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/img/DDS-OD-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/img/DDS-OD-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/img/DDS-SS-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/img/DDS-SS-niepoprawne.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/img/DDS-UCD-1-left.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/img/DDS-UCD-1-poprawione.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/img/DDS-UCD-1-right.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/img/clock_icon.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/img/title-image1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/img/title-image1.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/licenses/LICENSE-vecteezy.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/sources/Instrukcja-o-prowadzeniu-ruchu-pociagow-Ir-1.pdf" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2iFNJc0fJTtW1Kte0GLQ3GrmniB" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "dev",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4dfc3e98-b6f7-4379-a8cd-9fdbe5ebb0d9" name="Changes" comment="" />
+      <created>1719082301168</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1719082301168</updated>
+      <workItem from="1719082309908" duration="32000" />
+      <workItem from="1719082365449" duration="750000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
