@@ -1,4 +1,0 @@
-START: Wroclaw;Oborniki;12;160;18;-1
-NEW DIRECTION: Oborniki;Zmigrod;19;160
-DELAY IMPOSED: type Zle warunki atmosferyczne on 0 in queue ... SIZE: 3
-NEW DIRECTION: Zmigrod;Rawicz;61;160

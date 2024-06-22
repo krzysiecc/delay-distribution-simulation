@@ -4,11 +4,11 @@ import java.util.LinkedList;
 
 public class Track {
     private static int countRoutes = 0;
-    private int _ID;
-    private boolean secondTrack;
-    private int VMax;
-    private Station point1;
-    private Station point2;
+    private final int _ID;
+    private final boolean secondTrack;
+    private final int VMax;
+    private final Station point1;
+    private final Station point2;
 
     public LinkedList<Train> onTrack = new LinkedList<Train>();
 

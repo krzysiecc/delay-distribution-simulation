@@ -18,6 +18,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import org.dds.framework.FileManager;
 import org.dds.framework.FrameAdvance;
 import org.dds.framework.Initialization;
 import org.dds.builder.RouteShape;
@@ -30,6 +31,8 @@ import org.dds.objects.Train;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import java.awt.Desktop;
@@ -69,12 +72,16 @@ public class MainSceneController implements Initializable {
 
     @FXML
     private MenuItem exitButton;
+    
+    private static LinkedList<String> textToConsole;
 
     private DoubleProperty animationSpeedHandler;
     private Timeline simulation;
 
     private Group trainsOnMap;
     private ArrayList<Train> trains;
+
+    private FileManager fm;
 
     /**
      *  <p>After initializing all the FXML objects (inherited from .fxml file through an override) function initialize() from controller initialization interface
@@ -108,6 +115,7 @@ public class MainSceneController implements Initializable {
         animationSpeedHandler = new SimpleDoubleProperty(1.0);
         animationSpeedHandler.bind(animationSpeed.valueProperty());
         simulation.rateProperty().bind(animationSpeedHandler);
+
     }
 
     private void initializeMap() {
@@ -195,7 +203,7 @@ public class MainSceneController implements Initializable {
     // moving objects
     private void initializeTickControl() {
         simulation.getKeyFrames().add(
-                new KeyFrame(Duration.seconds(0.1), event -> {
+                new KeyFrame(Duration.seconds(0.005), event -> {
 
                     simulate();
 
@@ -207,7 +215,6 @@ public class MainSceneController implements Initializable {
                             if (ANIMATION_FRAME == trains.get(i).getStartFrame()) {
                                 trainsOnMap.getChildren().get(i).setVisible(true);
                                 FrameAdvance.addPassenger(trains.get(i));
-
                             }
 
                             if (trains.get(i).isEndOfRoute()) {
@@ -216,6 +223,12 @@ public class MainSceneController implements Initializable {
 
                             trainsOnMap.getChildren().get(i).setTranslateX(trains.get(i).getX());
                             trainsOnMap.getChildren().get(i).setTranslateY(trains.get(i).getY());
+                        }
+
+                        if (ANIMATION_FRAME == 4000) {
+                            simulation.stop();
+                            startButton.setDisable(false);
+                            stopButton.setDisable(true);
                         }
                     }
                 })

@@ -9,11 +9,11 @@ import java.util.LinkedList;
 public class FrameAdvance {
 
     // Tracking lists
-    private static ArrayList<Train> Passenger = new ArrayList<Train>();
-    private static LinkedList<Station> Stations = new LinkedList<Station>();
+    private static final ArrayList<Train> Passenger = new ArrayList<Train>();
+    private static final LinkedList<Station> Stations = new LinkedList<Station>();
 
     // Cleaning queues to remove unused objects from tracking lists
-    private static ArrayList<Train> PTRemoveQueue = new ArrayList<Train>();
+    private static final ArrayList<Train> PTRemoveQueue = new ArrayList<Train>();
 
 	public static int getTrainAmmount() {
 		return Passenger.size();
@@ -54,15 +54,14 @@ public class FrameAdvance {
         } );
 
         // Remove all objects set for deletion.
-        PTRemoveQueue.forEach( (n) -> {
-            Passenger.remove(n);
-        } );
+        PTRemoveQueue.forEach(Passenger::remove);
         PTRemoveQueue.clear();
 
 		if(!Passenger.isEmpty()){
 			Initialization.WCZInitialize.moveFrame();
 			Initialization.ZWAInitilize.moveFrame();
 			Initialization.ALInitialize.moveFrame();
+            Initialization.ASRKInitialize.moveFrame();
 		}
     }
 }

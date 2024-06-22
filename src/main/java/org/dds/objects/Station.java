@@ -3,9 +3,10 @@ package org.dds.objects;
 public class Station {
     private static int countStations = 0;
 
-    private int _stationID;
-    private String stationName;
-    private int x, y;
+    private final int _stationID;
+    private final String stationName;
+    private final int x;
+    private final int y;
 
     public Station() {
         _stationID          = countStations++;

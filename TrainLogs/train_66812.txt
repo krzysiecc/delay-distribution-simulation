@@ -1,2 +1,0 @@
-START: Wroclaw;Kobierzyce;4;120;42;-1
-NEW DIRECTION: Kobierzyce;Sobotka;44;100

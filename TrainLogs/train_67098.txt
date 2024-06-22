@@ -1,2 +1,0 @@
-START: Wroclaw;Olawa;15;160;36;-1
-NEW DIRECTION: Olawa;Brzeg;47;160

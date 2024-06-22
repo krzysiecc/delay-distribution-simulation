@@ -11,7 +11,7 @@ public class ZWA extends Delay {
 	@Override
 	protected int calcSpecificCondition(int i, int n, int Tc) {
 		if(i == 0){
-			return (int)Math.ceil(Tc * 1/6);
+			return (int)Math.ceil(Tc /6);
 		} else {
 			return (int)super.calcStageFormula[n];
 		}

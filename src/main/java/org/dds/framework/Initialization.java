@@ -1,6 +1,7 @@
 package org.dds.framework;
 
 import org.dds.objects.DelayTypes.AL;
+import org.dds.objects.DelayTypes.ASRK;
 import org.dds.objects.DelayTypes.WCZ;
 import org.dds.objects.DelayTypes.ZWA;
 import org.dds.objects.Track;
@@ -19,15 +20,20 @@ public class Initialization {
     */
     public final static WCZ WCZInitialize = new WCZ(0.01F, 0.05F, 501, "Wypadek z udzialem czlowieka", new int[] {4, 8}, new double[]{0.08333333333333333333, 0.04166666666666666667});
     public final static ZWA ZWAInitilize = new ZWA(0.2F, 0.3F, 512, "Zle warunki atmosferyczne", new int[]{3}, new double[]{1});
-    public final static AL ALInitialize = new AL(0.05F, 0.1F, 401, "Awaria lokomotywy", new int[]{3, 6}, new double[]{0.14285714285714285714, 0.07142857142857142857});
+    public final static AL ALInitialize = new AL(0.03F, 0.1F, 401, "Awaria lokomotywy", new int[]{3, 6}, new double[]{0.14285714285714285714, 0.07142857142857142857});
 
-    // public final static ASRK ASRKInitialize = new ASRK(0.3F, 0.35F, 402, "Awaria urządzeń sterowania ruchem kolejowym", new int[]{1, 3}, new double[]{1, 0});
+    public final static ASRK ASRKInitialize = new ASRK(0.05F, 0.1F, 402, "Awaria urzadzen sterowania ruchem kolejowym", new int[]{1, 3}, new double[]{1, 0});
 
     private static ArrayList<Station> stations;
     private static ArrayList<Track> tracks;
     private static ArrayList<Train> trains;
 
+    public static int independentEventsRate;
+
     public static void initializeObjects() {
+
+        // here you can choose all simulation settings
+        independentEventsRate = 500;
 
         /*
             Each station is initialized separately and uniquely.
@@ -74,9 +80,9 @@ public class Initialization {
         tracks = new ArrayList<>();
 
         Track WRO_KWR = new Track(160, WRO, KWR, true); tracks.add(WRO_KWR);
-        Track KWR_JSL = new Track(160, KWR, JSL, true); tracks.add(KWR_JSL);
-        Track JSL_SWI = new Track(160, JSL, SWI, true); tracks.add(JSL_SWI);
-        Track SWI_WALB = new Track(160, SWI, WALB, true); tracks.add(SWI_WALB);
+        Track KWR_JSL = new Track(120, KWR, JSL, true); tracks.add(KWR_JSL);
+        Track JSL_SWI = new Track(120, JSL, SWI, true); tracks.add(JSL_SWI);
+        Track SWI_WALB = new Track(120, SWI, WALB, true); tracks.add(SWI_WALB);
 
         // WROCŁAW - WAŁBRZYCH p/KĄTY WROCŁAWSKIE
         LinkedList<Track> WRO_WALB = new LinkedList<>();
@@ -149,47 +155,105 @@ public class Initialization {
 
         trains = new ArrayList<>();
 
-        Train KD66102 = new Train(66102, WRO, WRO_WALB, 1, 1); processTrains(KD66102);
-        Train KD66104 = new Train(66104, WALB, WRO_WALB, 1, 1); processTrains(KD66104);
-        //
-        Train KD66106 = new Train(66106, WRO, WRO_WALB, 25, 1); processTrains(KD66106);
-        Train KD66108 = new Train(66108, WALB, WRO_WALB, 25, 1); processTrains(KD66108);
-        Train KD66110 = new Train(66110, WRO, WRO_WALB, 49, 1); processTrains(KD66110);
+        // altogether 35-70 trains
 
-        Train KD66812 = new Train(66812, WRO, WRO_DSL, 21, 1); processTrains(KD66812);
-        Train KD66814 = new Train(66814, DSL, WRO_DSL, 27, 1); processTrains(KD66814);
-        //
-        Train KD66816 = new Train(66816, WRO, WRO_DSL, 45, 1); processTrains(KD66816);
-        Train KD66818 = new Train(66818, DSL, WRO_DSL, 51, 1); processTrains(KD66818);
-        Train KD66820 = new Train(66820, DSL, WRO_DSL, 75, 1); processTrains(KD66820);
+        // WROCŁAW - WAŁBRZYCH - WROCŁAW - 16
+        Train KD69265 = new Train(69265, WRO, WRO_WALB, 1, 0); processTrains(KD69265);
+        Train KD69228 = new Train(69228, WALB, WRO_WALB, 11, 1); processTrains(KD69228);
 
-        Train KD66298 = new Train(66298, DSL, DSL_JSL, 39, 1); processTrains(KD66298);
-        Train KD66296 = new Train(66296, JSL, DSL_JSL, 59, 1); processTrains(KD66296);
-        //
-        Train KD66294 = new Train(66294, DSL, DSL_JSL, 63, 1); processTrains(KD66294);
-        Train KD66292 = new Train(66292, JSL, DSL_JSL, 83, 1); processTrains(KD66292);
-        Train KD66290 = new Train(66290, JSL, DSL_JSL, 107, 1); processTrains(KD66290);
+        Train KD69267 = new Train(69267, WRO, WRO_WALB, 57, 1); processTrains(KD69267);
+        Train KD69230 = new Train(69230, WALB, WRO_WALB, 66, 0); processTrains(KD69230);
+        Train KD69232 = new Train(69232, WALB, WRO_WALB, 132, 1); processTrains(KD69232);
 
-        Train KD66342 = new Train(66342, WRO, WRO_LEG, 61, 1); processTrains(KD66342);
-        Train KD66348 = new Train(66348, LEG, WRO_LEG, 34, 1); processTrains(KD66348);
-        //
-        Train KD66354 = new Train(66354, WRO, WRO_LEG, 85, 1); processTrains(KD66354);
-        Train KD66360 = new Train(66360, LEG, WRO_LEG, 58, 1); processTrains(KD66360);
-        Train KD66364 = new Train(66364, LEG, WRO_LEG, 82, 1); processTrains(KD66364);
+        Train KD69234 = new Train(69234, WALB, WRO_WALB, 258, 0); processTrains(KD69234);
+        Train KD69273 = new Train(69273, WRO, WRO_WALB, 404, 1); processTrains(KD69273);
 
-        Train KD66122 = new Train(66122, WRO, WRO_RAW, 33, 1); processTrains(KD66122);
-        Train KD66124 = new Train(66124, RAW, WRO_RAW, 43, 1); processTrains(KD66124);
-        //
-        Train KD66126 = new Train(66126, WRO, WRO_RAW, 57, 1); processTrains(KD66126);
-        Train KD66128 = new Train(66128, RAW, WRO_RAW, 67, 1); processTrains(KD66128);
-        Train KD66130 = new Train(66130, RAW, WRO_RAW, 91, 1); processTrains(KD66130);
+        Train KD69277 = new Train(69277, WRO, WRO_WALB, 477, 1); processTrains(KD69277);
+        Train KD69238 = new Train(69238, WALB, WRO_WALB, 360, 1); processTrains(KD69238);
 
-        Train R67098 = new Train(67098, WRO, WRO_OPL, 53, 1); processTrains(R67098);
-        Train R67102 = new Train(67102, OPL, WRO_OPL, 53, 1); processTrains(R67102);
-        //
-        Train R67106 = new Train(67106, WRO, WRO_OPL, 77, 1); processTrains(R67106);
-        Train R67110 = new Train(67110, OPL, WRO_OPL, 77, 1); processTrains(R67110);
-        Train R67114 = new Train(67114, OPL, WRO_OPL, 101, 1); processTrains(R67114);
+        Train KD69285 = new Train(69285, WRO, WRO_WALB, 620, 0); processTrains(KD69285);
+        Train KD69252 = new Train(69252, WALB, WRO_WALB, 701, 1); processTrains(KD69252);
+        Train KD69289 = new Train(69289, WRO, WRO_WALB, 740, 1); processTrains(KD69289);
+
+        Train KD69116 = new Train(69116, WALB, WRO_WALB, 745, 0); processTrains(KD69116);
+        Train KD69113 = new Train(69113, WRO, WRO_WALB, 820, 0); processTrains(KD69113);
+
+        Train KD69254 = new Train(69254, WALB, WRO_WALB, 827, 0); processTrains(KD69254);
+        Train KD69295 = new Train(69295, WRO, WRO_WALB, 990, 0); processTrains(KD69295);
+
+        // WROCŁAW - DZIERŻONIÓW - WROCŁAW - 6
+        Train KD69211 = new Train(69211 , DSL, WRO_DSL, 70, 1); processTrains(KD69211);
+        Train KD69215 = new Train(69215 , DSL, WRO_DSL, 700, 1); processTrains(KD69215);
+        Train KD69201 = new Train(69201, WRO, WRO_DSL, 100, 1); processTrains(KD69201);
+
+        Train KD60259 = new Train(60259, DSL, WRO_DSL, 490, 1); processTrains(KD60259);
+        Train KD60213 = new Train(60213, WRO, WRO_DSL, 500, 1); processTrains(KD60213);
+        Train KD60217 = new Train(60217, WRO, WRO_DSL, 800, 0); processTrains(KD60217);
+
+        // WROCŁAW - LEGNICA - WROCŁAW - 12
+        Train KD66537 = new Train(66537, WRO, WRO_LEG, 5, 1); processTrains(KD66537);
+        Train KD66570 = new Train(66570, LEG, WRO_LEG, 9, 1); processTrains(KD66570);
+        Train KD66539 = new Train(66539, WRO, WRO_LEG, 75, 1); processTrains(KD66539);
+        Train KD66572 = new Train(66572, LEG, WRO_LEG, 90, 1); processTrains(KD66572);
+
+        Train KD66549 = new Train(66549, WRO, WRO_LEG, 310, 1); processTrains(KD66549);
+        Train KD66582 = new Train(66582, LEG, WRO_LEG, 310, 1); processTrains(KD66582);
+        Train KD66551 = new Train(66551, WRO, WRO_LEG, 390, 1); processTrains(KD66551);
+        Train KD66586 = new Train(66586, LEG, WRO_LEG, 410, 1); processTrains(KD66586);
+
+        Train KD66559 = new Train(66559, WRO, WRO_LEG, 630, 1); processTrains(KD66559);
+        Train KD66592 = new Train(66592, LEG, WRO_LEG, 630, 1); processTrains(KD66592);
+        Train KD66561 = new Train(66561, WRO, WRO_LEG, 740, 1); processTrains(KD66561);
+        Train KD66594 = new Train(66594, LEG, WRO_LEG, 710, 1); processTrains(KD66594);
+
+        // DZIERŻONIÓW - JAWORZYNA - DZIERŻONIÓW - 6
+        Train KD66803 = new Train(66803, DSL, DSL_JSL, 70, 1); processTrains(KD66803);
+        Train KD66811 = new Train(66803, DSL, DSL_JSL, 361, 1); processTrains(KD66811);
+        Train KD66819 = new Train(66803, DSL, DSL_JSL, 640, 1); processTrains(KD66819);
+
+        Train KD69828 = new Train(69828, JSL, DSL_JSL, 110, 1); processTrains(KD69828);
+        Train KD69836 = new Train(69836, JSL, DSL_JSL, 380, 1); processTrains(KD69836);
+        Train KD69844 = new Train(69844, JSL, DSL_JSL, 655, 1); processTrains(KD69844);
+
+        // WROCŁAW - OPOLE - WROCŁAW - 16
+        Train R66400 = new Train(66400, WRO, WRO_OPL, 5, 1); processTrains(R66400);
+        Train R66402 = new Train(66402, WRO, WRO_OPL, 55, 1); processTrains(R66402);
+        Train R66404 = new Train(66404, WRO, WRO_OPL, 105, 1); processTrains(R66404);
+
+        Train R46215 = new Train(46215, OPL, WRO_OPL, 11, 1); processTrains(R46215);
+        Train R66217 = new Train(66217, OPL, WRO_OPL, 66, 1); processTrains(R66217);
+        Train R66219 = new Train(66219, OPL, WRO_OPL, 110, 0); processTrains(R66219);
+
+        Train R66410 = new Train(66410, WRO, WRO_OPL, 360, 1); processTrains(R66410);
+        Train R66412 = new Train(66412, WRO, WRO_OPL, 450, 1); processTrains(R66412);
+        Train R66414 = new Train(66414, WRO, WRO_OPL, 500, 1); processTrains(R66414);
+        Train R66418 = new Train(66418, WRO, WRO_OPL, 630, 0); processTrains(R66418);
+        Train R66422 = new Train(66422, WRO, WRO_OPL, 820, 0); processTrains(R66422);
+
+        Train R66227 = new Train(66227, OPL, WRO_OPL, 375, 1); processTrains(R66227);
+        Train R66229 = new Train(66229, OPL, WRO_OPL, 540, 1); processTrains(R66229);
+        Train R66231 = new Train(66231, OPL, WRO_OPL, 600, 0); processTrains(R66231);
+        Train R66237 = new Train(66237, OPL, WRO_OPL, 730, 0); processTrains(R66237);
+        Train R66239 = new Train(66239, OPL, WRO_OPL, 900, 0); processTrains(R66239);
+
+        // WROCŁAW - RAWICZ - WROCŁAW - 16
+        Train KD67201 = new Train(67201, WRO, WRO_RAW, 3, 1); processTrains(KD67201);
+        Train KD67203 = new Train(67203, WRO, WRO_RAW, 55, 1); processTrains(KD67203);
+        Train KD67207 = new Train(67207, WRO, WRO_RAW, 190, 1); processTrains(KD67207);
+        Train KD67209 = new Train(67209, WRO, WRO_RAW, 240, 1); processTrains(KD67209);
+        Train KD67291 = new Train(67291, WRO, WRO_RAW, 400, 1); processTrains(KD67291);
+        Train KD67213 = new Train(67213, WRO, WRO_RAW, 450, 1); processTrains(KD67213);
+        Train KD67217 = new Train(67217, WRO, WRO_RAW, 550, 1); processTrains(KD67217);
+        Train KD67219 = new Train(67219, WRO, WRO_RAW, 630, 1); processTrains(KD67219);
+        Train KD67293 = new Train(67293, WRO, WRO_RAW, 745, 0); processTrains(KD67293);
+        Train KD67223 = new Train(67223, WRO, WRO_RAW, 630, 0); processTrains(KD67223);
+
+        Train KD76228 = new Train(76228, RAW, WRO_RAW, 11, 1); processTrains(KD76228);
+        Train KD76230 = new Train(76230, RAW, WRO_RAW, 66, 0); processTrains(KD76230);
+        Train KD76236 = new Train(76236, RAW, WRO_RAW, 240, 1); processTrains(KD76236);
+        Train KD76288 = new Train(76288, RAW, WRO_RAW, 410, 1); processTrains(KD76288);
+        Train KD76244 = new Train(76244, RAW, WRO_RAW, 600, 1); processTrains(KD76244);
+        Train KD76254 = new Train(76254, RAW, WRO_RAW, 800, 0); processTrains(KD76254);
     }
 
     public static void processStation(Station station) {

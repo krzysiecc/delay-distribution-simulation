@@ -1,2 +1,0 @@
-START: Dzierzoniow Slaski;Swidnica;7;80;26;-1
-NEW DIRECTION: Swidnica;Jaworzyna Slaska;47;80

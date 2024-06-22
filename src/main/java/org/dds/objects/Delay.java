@@ -2,14 +2,18 @@ package org.dds.objects;
 
 import org.dds.framework.FrameAdvance;
 
+import static org.dds.framework.Initialization.independentEventsRate;
+
 public class Delay implements BaseDelay {
 
 	protected int[] calcStageUntil;
 	protected double[] calcStageFormula;
 
-    private float minProbability, maxProbability;
-    private int _ID, abort;
-    private String nameID;
+    private final float minProbability;
+    private final float maxProbability;
+    private final int _ID;
+    private int abort;
+    private final String nameID;
     protected Train randomTrain;
     protected Track randomTrack;
 
@@ -33,7 +37,7 @@ public class Delay implements BaseDelay {
 	@Override
 	public void moveFrame() {
 
-		if(Math.random() < minProbability / 30) {
+		if(Math.random() < minProbability / independentEventsRate) {
 			abort = 0;
 			System.out.println("Delay imposed: " + nameID);
 			randomTrain = findTrain();

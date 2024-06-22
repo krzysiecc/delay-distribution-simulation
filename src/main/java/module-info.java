@@ -10,4 +10,7 @@ module org.dds {
 
     exports org.dds.controller;
     exports org.dds.window;
+    exports org.dds.builder;
+    exports org.dds.framework;
+    exports org.dds.objects;
 }

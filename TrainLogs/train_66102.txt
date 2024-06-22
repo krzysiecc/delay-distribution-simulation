@@ -1,3 +1,0 @@
-START: Wroclaw;Katy Wroclawskie;0;160;32;-1
-NEW DIRECTION: Katy Wroclawskie;Jaworzyna Slaska;39;160
-NEW DIRECTION: Jaworzyna Slaska;Swiebodzice;89;160
