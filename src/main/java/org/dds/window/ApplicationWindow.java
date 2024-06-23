@@ -7,7 +7,9 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.dds.framework.TextOutputStream;
 
+import java.io.PrintStream;
 import java.util.Objects;
 
 public class ApplicationWindow extends Application {

@@ -21,7 +21,7 @@ public class Station {
         this.x = x;
         this.y = y;
 
-        System.out.println("Station " + _stationID + " " + stationName + " created on " + x + " X and " + y + " Y");
+//        System.out.println("Station " + _stationID + " " + stationName + " created on " + x + " X and " + y + " Y");
     }
 
     public int getX() {

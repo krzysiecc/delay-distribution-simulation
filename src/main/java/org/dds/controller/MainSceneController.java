@@ -18,28 +18,26 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import org.dds.framework.FileManager;
-import org.dds.framework.FrameAdvance;
-import org.dds.framework.Initialization;
 import org.dds.builder.RouteShape;
 import org.dds.builder.StationShape;
 import org.dds.builder.TrainShape;
-import org.dds.objects.Track;
+import org.dds.framework.FrameAdvance;
+import org.dds.framework.Initialization;
+import org.dds.framework.TextOutputStream;
 import org.dds.objects.Station;
+import org.dds.objects.Track;
 import org.dds.objects.Train;
 
+import java.awt.*;
+import java.io.PrintStream;
+import java.net.URI;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.ResourceBundle;
 
-import java.awt.Desktop;
-import java.net.URI;
-
 import static org.dds.framework.Clock.*;
-import static org.dds.framework.FrameAdvance.adv;
 
 public class MainSceneController implements Initializable {
 
@@ -50,7 +48,7 @@ public class MainSceneController implements Initializable {
     private Text clock;
 
     @FXML
-    public TextArea consoleInfo;
+    private TextArea consoleInfo;
 
     @FXML
     private Text date;
@@ -72,16 +70,12 @@ public class MainSceneController implements Initializable {
 
     @FXML
     private MenuItem exitButton;
-    
-    private static LinkedList<String> textToConsole;
 
     private DoubleProperty animationSpeedHandler;
     private Timeline simulation;
 
     private Group trainsOnMap;
     private ArrayList<Train> trains;
-
-    private FileManager fm;
 
     /**
      *  <p>After initializing all the FXML objects (inherited from .fxml file through an override) function initialize() from controller initialization interface
@@ -98,6 +92,11 @@ public class MainSceneController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        // Setting new OutputStream
+        PrintStream ps = new PrintStream(new TextOutputStream(consoleInfo));
+        System.setOut(ps);
+        System.setErr(ps);
 
         initializeSimulation();
 
@@ -198,12 +197,14 @@ public class MainSceneController implements Initializable {
         exitButton.setOnAction(event -> {
             Platform.exit();
         });
+
+        consoleInfo.setEditable(false);
     }
 
     // moving objects
     private void initializeTickControl() {
         simulation.getKeyFrames().add(
-                new KeyFrame(Duration.seconds(0.005), event -> {
+                new KeyFrame(Duration.seconds(0.1), event -> {
 
                     simulate();
 
@@ -255,4 +256,5 @@ public class MainSceneController implements Initializable {
     public int getFrameNumber() {
         return ANIMATION_FRAME;
     }
+
 }

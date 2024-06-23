@@ -1,9 +1,11 @@
 package org.dds.objects;
 
+import org.dds.framework.TextOutputStream;
 import org.dds.objects.BaseTrain;
 import org.dds.objects.Station;
 import org.dds.objects.Track;
 
+import java.io.PrintStream;
 import java.text.DecimalFormat;
 import java.util.*;
 import java.lang.Math;
@@ -87,6 +89,7 @@ public class Train implements BaseTrain {
     }
 
     public Train(int _NID, Station _startStation, LinkedList<Track> tracksLeft, int startFrame, int backAndForth) {
+
         this._NID = _NID;
         this.startFrame = startFrame;
         this.backAndForth = backAndForth;

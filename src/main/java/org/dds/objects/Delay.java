@@ -13,6 +13,7 @@ public class Delay implements BaseDelay {
     private final float maxProbability;
     private final int _ID;
     private int abort;
+	private int delay;
     private final String nameID;
     protected Train randomTrain;
     protected Track randomTrack;
@@ -39,8 +40,8 @@ public class Delay implements BaseDelay {
 
 		if(Math.random() < minProbability / independentEventsRate) {
 			abort = 0;
-			System.out.println("Delay imposed: " + nameID);
 			randomTrain = findTrain();
+
 
 			if (abort == 500) return;
 			randomTrack = randomTrain.requestCurrentTrack();
@@ -49,6 +50,8 @@ public class Delay implements BaseDelay {
 				return;
 			}
 			calculateAndApplyDelay();
+
+			System.out.println(randomTrain.getTrainID()+ "    OPOZNIENIE:  " + nameID + "  " + delay + " min");
 		}
 	}
 
@@ -87,7 +90,7 @@ public class Delay implements BaseDelay {
 				n++;
 			}
 
-			int delay = calcSpecificCondition(i, n, Tc);
+			delay = calcSpecificCondition(i, n, Tc);
 			nextTrain.registerDelay(delay, getNameID(), i);
 		}
 	}
